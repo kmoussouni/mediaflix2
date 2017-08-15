@@ -1,0 +1,57 @@
+{% embed '::base.html.twig' %}
+
+    {% block title %}Pure-CSS Netflix Show Carousel {% endblock %}
+
+    {% block body %}
+
+        <h1>Pure CSS Netflix Video Carousel</h1>
+
+            <p>
+                Inspired by  <a href="https://twitter.com/Eli_White">Eli White's</a> article <a href="http://eng.wealthfront.com/2015/06/implementing-netflix-redesign.html">Performant CSS Animations: Netflix Case Study</a>, his <a href="https://codepen.io/TheSavior/pen/LVeYBp">example pen</a>, and <a href="http://matthewjamestaylor.com/">Matt Taylor's</a> <a href="https://codepen.io/mattjamestaylor/pen/dodYPr">CSS-only version.</a>
+            </p>
+
+            {%
+                set vignettes = [ "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-1.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-2.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-3.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-4.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-5.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-6.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-7.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-8.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-9.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-10.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-11.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-12.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-13.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-14.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-15.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-16.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-17.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-18.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-19.jpg",
+                        "https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-20.jpg"
+                ]
+            %}
+
+            {% for i in 0..10 %}
+
+                <div class="row">
+
+                    <div class="row__inner">
+
+                        {% for vignette in vignettes %}
+                            {% include '@App/Front/Vignette/vignette.html.twig' with {url: vignette} %}
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

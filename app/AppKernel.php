@@ -15,7 +15,38 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+
+            new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+
+            new FOS\RestBundle\FOSRestBundle(),
+            new \FOS\UserBundle\FOSUserBundle(),
+
+            new \JMS\SerializerBundle\JMSSerializerBundle(),
+//            new \JMS\TranslationBundle\JMSTranslationBundle(),
+
+            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+
+            new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle(),
+
+//          new \A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
+            new Vich\UploaderBundle\VichUploaderBundle(),
+
+            new FM\ElfinderBundle\FMElfinderBundle(),
+            new \Lexik\Bundle\TranslationBundle\LexikTranslationBundle(),
+
+            new Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
+
+//            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
+
             new AppBundle\AppBundle(),
+            new MediaBundle\MediaBundle(),
+            new UserBundle\UserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

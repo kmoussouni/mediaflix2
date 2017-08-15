@@ -2,6 +2,9 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@MediaBundle/Resources/config/services.yml" }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
+    - { resource: admin.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -68,3 +71,172 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: UserBundle\Entity\User
+    use_username_form_type: false
+    from_email:
+        address: lebondev@gmail.com
+        sender_name: Karim Moussouni
+
+#
+#a2lix_translation_form:
+#    locale_provider: default
+#    locales: "%available_locales%"
+#    default_locale: "%locale%"
+#    required_locales: "%available_locales%"
+
+lexik_translation:
+    fallback_locale: "%locale%"      # (required) default locale to use
+    managed_locales: %available_locales%
+    resources_registration:
+        type: all
+#        managed_locales_only: true
+    storage:
+        type: orm                  # orm | mongodb | propel
+        object_manager: ~  # The name of the entity / document manager which uses different connection (see: http://symfony.com/doc/current/cookbook/doctrine/multiple_entity_managers.html)
+#                                    When using propel, this can be used to specify the propel connection name
+    base_layout: "LexikTranslationBundle::layout.html.twig"
+#    use_yml_tree: true
+#    dev_tools:
+##        auto_cache_clean: true
+##        auto_cache_clean_interval: 600
+#        enable: true
+#        create_missing: true
+##        file_format: yml
+
+fm_elfinder:
+    instances:
+        ckeditor:
+            locale:           %locale%
+            editor:           ckeditor
+            fullscreen:       false
+            include_assets:   true
+            connector:
+                debug:        false
+                roots:
+                    uploads:
+                        driver:           LocalFileSystem
+                        path:             uploads
+                        upload_allow:     ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'application/zip', 'audio/mpeg', 'text/csv', 'video/mp4', 'video/webm', 'application/pdf']
+                        upload_deny:      ['all']
+                        upload_max_size:  8M
+#
+#jms_translation:
+#    configs:
+#        app:
+#            output_dir: "%kernel.root_dir%/Resources/translations"
+#            ignored_domains: [routes]
+#            excluded_names: ["*TestCase.php", "*Test.php"]
+#            excluded_dirs: [cache, data, logs]
+#            output_format: yml
+##            dirs:
+##              - "%kernel.root_dir%/../app/Resources/TwigBundle"
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        images:
+            uri_prefix:         '%app.path.product_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images'
+            namer:              vich_uploader.namer_uniqid
+
+stof_doctrine_extensions:
+    default_locale: "%locale%"
+    orm:
+        default:
+            tree: true
+            timestampable: true # not needed: listeners are not enabled by default
+            translatable: true #  not needed: listeners are not enabled by default
+            softdeleteable: true
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml: true
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+
+lexik_maintenance:
+    authorized:
+#        path: /                                                         # Optional. Authorized path, accepts regexs
+#        host: your-domain.com                                               # Optional. Authorized domain, accepts regexs
+#        ips: ['127.0.0.1', '172.123.10.14']                                 # Optional. Authorized ip addresses
+#        query: { foo: bar }                                                 # Optional. Authorized request query parameter (GET/POST)
+#        cookie: { bar: baz }                                                # Optional. Authorized cookie
+#        route:                                                              # Optional. Authorized route name
+#        attributes:                                                         # Optional. Authorized route attributes
+    driver:
+#        ttl: 3600                                                                  # Optional ttl option, can be not set
+
+         # File driver
+        class: '\Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver'                # class for file driver
+        options: {file_path: %kernel.cache_dir%/lock}                         # file_path is the complete path for create the file
+
+#         # Shared memory driver
+#        class: '\Lexik\Bundle\MaintenanceBundle\Drivers\ShmDriver'                 # class for shared memory driver
+#
+#         # MemCache driver
+#        class: Lexik\Bundle\MaintenanceBundle\Drivers\MemCacheDriver               # class for MemCache driver
+#        options: {key_name: 'maintenance', host: 127.0.0.1, port: 11211}           # need to define a key_name, the host and port
+
+#        # Database driver:
+#        class: 'Lexik\Bundle\MaintenanceBundle\Drivers\DatabaseDriver'             # class for database driver
+
+        # Option 1 : for doctrine
+#        options: {connection: custom}                                            # Optional. You can choice an other connection. Without option it's the doctrine default connection who will be used
+
+        # Option 2 : for dsn, you must have a column ttl type datetime in your table.
+#        options: {dsn: "mysql:dbname=maintenance;host:localhost", table: maintenance, user: root, password: root}  # the dsn configuration, name of table, user/password
+
+    #Optional. response code and status of the maintenance page
+    response:
+        code: 503
+        status: "Service Temporarily in Maintenance"
+
+
+fos_elastica:
+    clients:
+        default:
+            host: localhost
+            port: 9200
+            headers:
+#                Authorization: "Basic ZWxhc3RpYzpBYWFrbWgxOSE="
+                Authorization: "Basic YWRtaW46QWFha21oMTkh" # admin
+#    clients:
+#        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            index_name: mediaflix2_%kernel.environment%
+#            types:
+#                post:
+#                    serializer:
+#                        groups: [elastica]
+#                    persistence:
+#                        driver: orm
+#                        model: KM\DashBundle\Entity\Post
+#                tag:
+#                    serializer:
+#                        groups: [elastica]
+#                    persistence:
+#                        driver: orm
+#                        model: KM\DashBundle\Entity\Tag
+#                category:
+#                    serializer:
+#                        groups: [elastica]
+#                    persistence:
+#                        driver: orm
+#                        model: KM\DashBundle\Entity\Category

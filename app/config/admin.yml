@@ -1,0 +1,97 @@
+easy_admin:
+    site_name: 'Mediaflix2'
+    design:
+        brand_color: 'green'
+        color_scheme: 'light'
+        form_theme: 'horizontal'
+        assets:
+            css:
+                - 'compiled/admin/style.css'
+                - 'bundles/easyadmin/stylesheet/adminlte.min.css'
+    list:
+        max_results: 30
+    entities:
+        Traduction:
+            class: Lexik\Bundle\TranslationBundle\Entity\TransUnit
+            label: Traductions
+        Image:
+            class: MediaBundle\Entity\Image
+            label: Image
+#        Contact:
+#            class: KM\DashBundle\Entity\Contact
+#            label: Contacts
+#        Post:
+#            class: KM\DashBundle\Entity\Post
+#            label: Billets
+#            list:
+#                fields:
+#                    - 'id'
+#                    - { property: 'title', type: 'string' }
+#                    - { property: 'image', type: 'image', base_path: '%app.path.product_images%'  }
+#                    - { property: 'actif', type: 'boolean' }
+#                    - { property: 'revision', type: 'string' }
+#                    - 'categories'
+#                    - 'votes'
+#                    - { property: 'createdAt', type: 'datetime' }
+#                    - { property: 'updatedAt', type: 'datetime' }
+#            form:
+#                fields:
+#                    - 'title'
+#                    - 'actif'
+#                    - 'revision'
+#                    - { property: 'text', type: 'ckeditor' }
+#                    - 'image'
+#                    - 'categories'
+#                    - 'tags'
+#                    - 'realisation'
+#                    - 'author'
+#                    - { property: 'imageFile', type: 'vich_image' }
+#                    - { property: 'createdAt', type: 'datetime' }
+#                    - { property: 'updatedAt', type: 'datetime' }
+#        Realisation:
+#            class: KM\DashBundle\Entity\Realisation
+#            label: Realisations
+#            list:
+#                fields:
+#                    - 'id'
+#                    - { property: 'image', type: 'image', base_path: '%app.path.product_images%'  }
+#                    - 'title'
+#                    - 'active'
+#                    - 'project'
+#                    - 'client'
+#                    - { property: 'createdAt', type: 'datetime' }
+#                    - { property: 'updatedAt', type: 'datetime' }
+#            form:
+#                fields:
+#                    - 'title'
+#                    - 'punchline'
+#                    - 'active'
+##                    - { property: 'image', type: 'vich_image', base_path: '%app.path.product_images%'  }
+#                    - { property: 'imageFile', type: 'vich_image', base_path: '%app.path.product_images%' }
+#                    - 'project'
+#                    - 'client'
+#                    - { property: 'createdAt', type: 'datetime' }
+#                    - { property: 'updatedAt', type: 'datetime' }
+#        Tag:
+#            class : KM\DashBundle\Entity\Tag
+#            labels: Tags
+#        User:
+#            class: KM\DashBundle\Entity\User
+#            label: Utilisateurs
+#            form:
+#                fields:
+#                    - username
+#                    - email
+#                    - firstname
+#                    - lastname
+#                    - enabled
+#                    - lastLogin
+#                    # if administrators are allowed to edit users' passwords and roles, add this:
+#                    - { property: 'plainPassword', type: 'text', type_options: { required: false } }
+#                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+#        Visite:
+#            class: KM\DashBundle\Entity\Visite
+#            label: Visites
+#        Vote:
+#            class: KM\DashBundle\Entity\Vote
+#            label: Votes

@@ -17,3 +17,10 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    available_locales:
+        - fr
+        - en
+    app.path.product_images: uploads/images
+    ga_tracking: UA-XXXXX-X
+    assets_base_url: 'http://mediaflix2.local'

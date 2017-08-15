@@ -5,7 +5,7 @@
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle"
+            "": "src/"
         },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
@@ -40,7 +40,6 @@
         "symfony/assetic-bundle": "^2.8",
         "stof/doctrine-extensions-bundle": "^1.2",
         "lexik/maintenance-bundle": "^2.1",
-        "egeloen/ckeditor-bundle": "^5.0",
         "maba/webpack-bundle": "^0.6.4",
         "friendsofsymfony/elastica-bundle": "^4.0"
 
